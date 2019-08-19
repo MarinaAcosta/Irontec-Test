@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { GitService } from "./services/git.service"
+import { GitIssue } from './classes/gitIssue';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,8 @@ import { GitService } from "./services/git.service"
 })
 export class AppComponent{
   private title = 'Irontec-Test';
-  private data: any;
+  private issues: GitIssue[];
+  private error: string;
   private url: string = "https://github.com/angular/angular"; 
 
   constructor(private service: GitService) { }
@@ -18,12 +20,19 @@ export class AppComponent{
     let repository = splitUrl[splitUrl.length-1];
     let owner = splitUrl[splitUrl.length-2];
 
-    this.service.getIssues(repository, owner).subscribe(
-      data => {
-        this.data = data;
-        console.log(data);
+    this.service.getIssues(repository, owner)
+    .subscribe(
+      (result: Array<GitIssue>) => { 
+        this.error = undefined;
+        this.issues = result;
+      },
+      (error: any) => { 
+        this.issues = undefined;
+        this.error = "Se ha producido un error, vuelva a intentarlo.";
+        console.log("Error: " + error)
       }
-    );
+    )
   }
 
 }
+

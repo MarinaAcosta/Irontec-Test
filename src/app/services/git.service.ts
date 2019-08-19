@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { GitIssue } from '../classes/gitIssue';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,9 +8,17 @@ import { Observable } from 'rxjs';
 })
 export class GitService {
 
+  private issues : GitIssue[]; 
+
   constructor(private http: HttpClient){ }
 
-  getIssues(repository: string, owner: string): Observable<any>{
-    return this.http.get('https://api.github.com/repos/' + owner + '/' + repository + '/issues');
+  getIssues(repository: string, owner: string): Observable<Object>{
+    return this.http.get('https://api.github.com/repos/' + owner + '/' + repository + '/issues')
+  }
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error);
+    return Promise.reject(error.message || error);
   }
 }
+
