@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+    background-color: #F2F3F4;
+    color: #3535358a;
+    text-align: center;
+}
+
+ul.ngx-pagination {
+    padding-inline-start: 0 !important;
+}

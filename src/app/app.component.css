@@ -1,0 +1,38 @@
+h1, h2 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#url {
+    font-size: 14px;
+    width: 22%;
+    margin: 6px;
+}
+
+#submit {
+    font-size: 14px;
+    margin: 6px;
+}
+
+#issuesList {
+    text-align: left;
+    display: inline-table;
+    width: 80%;
+}
+
+#issue {
+    color: #000000;
+    margin: 5px;
+    border: #B2BABB;
+    border-style: groove;
+    border-radius: 12px;
+    width: 45%;
+    float: left;
+}
+
+span {
+    font-weight: bold; 
+}
+
+#content {
+    margin: 5px;
+}
